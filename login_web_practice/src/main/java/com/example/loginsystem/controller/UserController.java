@@ -171,10 +171,10 @@ public class UserController {
         return "register_premium";
     }
     
-    @GetMapping("/logout")
-    public String logout() {
-    	return "login_normal";
-    }
+    // @GetMapping("/logout")   vscode不需要這段，可以直接把按鈕導向之前的url，eclipse才需要
+    // public String logout() {
+    // 	return "login_normal";
+    // }
     
     
 }
