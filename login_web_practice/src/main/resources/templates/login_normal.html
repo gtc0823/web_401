@@ -323,6 +323,6 @@
 
 <div th:if="${errorMessage}">
     <script th:inline="javascript">
-        alert([[${errorMessage}]]);
+        alert(/*[[${errorMessage}]]*/"");
     </script>
 </div>

@@ -20,6 +20,7 @@ import com.example.loginsystem.model.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import org.springframework.lang.NonNull;
 
 @Repository
 public class UserRepository{
@@ -28,7 +29,7 @@ public class UserRepository{
 	//處理從DB裡獲得的數據
 	private final RowMapper<User> userRowMapper = new RowMapper<User>() {
         @Override
-        public User mapRow(ResultSet rs, int rowNum) throws SQLException {
+        public User mapRow(@NonNull ResultSet rs, int rowNum) throws SQLException {
             User user = new User();
             user.setID(rs.getInt("id"));
             user.setUsername(rs.getString("username"));
