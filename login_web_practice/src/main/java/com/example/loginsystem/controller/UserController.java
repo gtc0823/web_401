@@ -127,7 +127,8 @@ public class UserController {
     public String loginSubmit_normal(@ModelAttribute User user, Model model) {
     	User loginUser = userService.login_normal(user.getUsername(), user.getPassword());
     		if (loginUser != null) {
-	          return "test_main";
+	          // Redirect to the URL path handled by FileController
+	          return "redirect:/document_management"; 
 	      } else {
 	          model.addAttribute("errorMessage", "Invalid username/password!");
 	          return "login_normal";
@@ -178,4 +179,3 @@ public class UserController {
     
     
 }
-
