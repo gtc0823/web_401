@@ -60,6 +60,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.example.loginsystem.model.NormalUser;
 import com.example.loginsystem.model.PremiumUser;
@@ -67,12 +69,15 @@ import com.example.loginsystem.service.UserService;
 
 @Controller
 public class UserController {
+    
+    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @Autowired
     private UserService userService;
 
     @GetMapping("/")
     public String home() {
+        logger.info("Accessing home page");
         return "home";
     }
     
