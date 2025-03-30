@@ -61,7 +61,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.example.loginsystem.model.User;
+import com.example.loginsystem.model.NormalUser;
+import com.example.loginsystem.model.PremiumUser;
 import com.example.loginsystem.service.UserService;
 
 @Controller
@@ -70,104 +71,67 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-//    @GetMapping("/")
-//    public String home() {
-//        return "index";
-//    }
-//    
-//
-//    @GetMapping("/login")
-//    public String login(Model model) {
-//        model.addAttribute("user", new User());
-//        return "login";
-//    }
-//
-//    @PostMapping("/login")
-//    public String loginSubmit(@ModelAttribute User user, Model model) {
-//        User loginUser = userService.login(user.getUsername(), user.getPassword());
-//        if (loginUser != null) {
-//            model.addAttribute("successMessage", "Login successful!");
-//            return "login";
-//        } else {
-//            model.addAttribute("errorMessage", "Invalid credentials!");
-//            return "login";
-//        }
-//    }
-//
-//    @GetMapping("/register")
-//    public String register(Model model) {
-//        model.addAttribute("user", new User());
-//        return "register";
-//    }
-//
-//    @PostMapping("/register")
-//    public String registerSubmit(@ModelAttribute User user, Model model) {
-//        userService.register(user);
-//        model.addAttribute("successMessage", "Registration successful!");
-//        return "register";
-//    }
     @GetMapping("/")
-	public String home() {
-	    return "home";
-	}
+    public String home() {
+        return "home";
+    }
     
     @GetMapping("/login_normal")
     public String login_normal(Model model) {
-        model.addAttribute("user", new User());
+        model.addAttribute("user", new NormalUser());
         return "login_normal";
     }
     
     @GetMapping("/login_premium")
     public String login_premium(Model model) {
-        model.addAttribute("user", new User());
+        model.addAttribute("user", new PremiumUser());
         return "login_premium";
     }
     
     @PostMapping("/login_normal")
-    public String loginSubmit_normal(@ModelAttribute User user, Model model) {
-    	User loginUser = userService.login_normal(user.getUsername(), user.getPassword());
-    		if (loginUser != null) {
-	          // Redirect to the URL path handled by FileController
-	          return "redirect:/document_management"; 
-	      } else {
-	          model.addAttribute("errorMessage", "Invalid username/password!");
-	          return "login_normal";
-	      }
-	 }
+    public String loginSubmit_normal(@ModelAttribute NormalUser user, Model model) {
+        NormalUser loginUser = userService.loginNormal(user.getUsername(), user.getPassword());
+        if (loginUser != null) {
+            return "redirect:/document_management"; 
+        } else {
+            model.addAttribute("errorMessage", "Invalid username/password!");
+            return "login_normal";
+        }
+    }
     
     @PostMapping("/login_premium")
-    public String loginSubmit_premium(@ModelAttribute User user, Model model) {
-    	User loginUser = userService.login_premium(user.getUsername(), user.getPassword());
-    		if (loginUser != null) {
-	          return "premium_page";
-	      } else {
-	          model.addAttribute("errorMessage", "Invalid username/password!");
-	          return "login_premium";
-	      }
-	 }
+    public String loginSubmit_premium(@ModelAttribute PremiumUser user, Model model) {
+        PremiumUser loginUser = userService.loginPremium(user.getUsername(), user.getPassword());
+        if (loginUser != null) {
+            return "premium_page";
+        } else {
+            model.addAttribute("errorMessage", "Invalid username/password!");
+            return "login_premium";
+        }
+    }
     
     @GetMapping("/register_normal")
     public String register_normal(Model model) {
-        model.addAttribute("user", new User());
+        model.addAttribute("user", new NormalUser());
         return "register_normal";
     }
     
     @GetMapping("/register_premium")
     public String register_premium(Model model) {
-        model.addAttribute("user", new User());
+        model.addAttribute("user", new PremiumUser());
         return "register_premium";
     }
     
     @PostMapping("/register_normal")
-    public String registerSubmit_normal(@ModelAttribute User user, Model model) {
-        userService.register_normal(user);
+    public String registerSubmit_normal(@ModelAttribute NormalUser user, Model model) {
+        userService.registerNormal(user);
         model.addAttribute("successMessage", "Registration successful!");
         return "register_normal";
     }
     
     @PostMapping("/register_premium")
-    public String registerSubmit_premium(@ModelAttribute User user, Model model) {
-        userService.register_premium(user);
+    public String registerSubmit_premium(@ModelAttribute PremiumUser user, Model model) {
+        userService.registerPremium(user);
         model.addAttribute("successMessage", "Registration successful!");
         return "register_premium";
     }
