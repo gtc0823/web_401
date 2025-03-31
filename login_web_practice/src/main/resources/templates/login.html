@@ -53,12 +53,12 @@
 
     <div th:if="${successMessage}">
         <script th:inline="javascript">
-            alert([[${successMessage}]]);
+            alert(/*[[${successMessage}]]*/);
         </script>
     </div>
     <div th:if="${errorMessage}">
         <script th:inline="javascript">
-            alert([[${errorMessage}]]);
+            alert(/*[[${errorMessage}]]*/);
         </script>
     </div>
 </body>
