@@ -100,7 +100,7 @@ public class UserController {
             return "redirect:/document_management"; 
         } else {
             model.addAttribute("errorMessage", "Invalid username/password!");
-            return "login_normal";
+            return "redirect:/login_normal";
         }
     }
     
@@ -111,7 +111,7 @@ public class UserController {
             return "premium_page";
         } else {
             model.addAttribute("errorMessage", "Invalid username/password!");
-            return "login_premium";
+            return "redirect:/login_premium";
         }
     }
     
