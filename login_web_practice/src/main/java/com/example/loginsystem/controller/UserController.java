@@ -130,15 +130,15 @@ public class UserController {
     @PostMapping("/register_normal")
     public String registerSubmit_normal(@ModelAttribute NormalUser user, Model model) {
         userService.registerNormal(user);
-        model.addAttribute("successMessage", "Registration successful!");
-        return "register_normal";
+        model.addAttribute("successMessage", "Registration successful! Please login.");
+        return "redirect:/login_normal";
     }
     
     @PostMapping("/register_premium")
     public String registerSubmit_premium(@ModelAttribute PremiumUser user, Model model) {
         userService.registerPremium(user);
-        model.addAttribute("successMessage", "Registration successful!");
-        return "register_premium";
+        model.addAttribute("successMessage", "Registration successful! Please login.");
+        return "redirect:/login_premium";
     }
     
     // @GetMapping("/logout")   vscode不需要這段，可以直接把按鈕導向之前的url，eclipse才需要
